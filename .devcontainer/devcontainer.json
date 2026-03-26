@@ -1,0 +1,17 @@
+{
+   "name": "ubuntu",
+   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+   "remoteUser": "root",
+   "features": {              
+   },
+   "customizations": {
+      "vscode": {
+         "extensions": [
+            "sst-dev.opencode",
+            "ms-python.python",
+            "ms-toolsai.jupyter"
+         ]
+      }
+   },
+   "postCreateCommand": "sh .devcontainer/post.sh"
+} 
