@@ -6,6 +6,7 @@ apt-get update
 if ! command -v python --version >/dev/null 2>&1; then
     echo "Installing python..."
     apt-get install -y python3 python3-pip
+    pip install -r requirements.txt --break-system-packages
 else
     echo "Python already installed"
 fi
