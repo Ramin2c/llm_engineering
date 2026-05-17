@@ -3,35 +3,25 @@
 apt-get update
 
 # Python installation
-if ! command -v python --version >/dev/null 2>&1; then
-    echo "Installing python..."
-    apt-get install -y python3 python3-pip
-    pip install -r requirements.txt --break-system-packages
-else
-    echo "Python already installed"
-fi
-
-# opencode.ai CLI installation
-if ! command -v opencode >/dev/null 2>&1; then
-    echo "Installing opencode.ai CLI..."
-    curl -fsSL https://opencode.ai/install | bash
-else
-    echo "opencode.ai CLI already installed"
-fi
-
-# Ollama installation
-if ! command -v ollama >/dev/null 2>&1; then
-    apt-get install zstd
-    echo "Installing Ollama..."
-    curl -fsSL https://ollama.com/install.sh | sh
-else
-    echo "Ollama already installed"
-fi
+echo "Installing python..."
+apt-get install -y python3 python3-pip
+alias python=python3
 
 # UV installation
-if ! command -v uv --version >/dev/null 2>&1; then
-    echo "Installing UV..."
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-else
-    echo "UV already installed"
-fi
+echo "Installing UV..."
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv venv
+
+# Python packages installation
+echo "Installing python packages..."
+uv sync
+
+# opencode.ai CLI installation
+echo "Installing opencode.ai CLI..."
+curl -fsSL https://opencode.ai/install | bash
+
+# Ollama installation
+apt-get install zstd
+echo "Installing Ollama..."
+curl -fsSL https://ollama.com/install.sh | sh
+
